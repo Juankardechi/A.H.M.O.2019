@@ -1,0 +1,698 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HorasMedicasOnlineModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Agenda">
+          <Key>
+            <PropertyRef Name="IdA" />
+          </Key>
+          <Property Name="IdA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdD" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="date" />
+          <Property Name="HoraInicio" Type="time" Precision="7" />
+          <Property Name="HoraTermino" Type="time" Precision="7" />
+          <Property Name="Estado" Type="bit" />
+        </EntityType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="IdD" />
+          </Key>
+          <Property Name="IdD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdE" Type="int" Nullable="false" />
+          <Property Name="Codigo" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="ApellidoPaterno" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="ApellidoMaterno" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Rut" Type="int" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="Especialidad">
+          <Key>
+            <PropertyRef Name="IdE" />
+          </Key>
+          <Property Name="IdE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Monto">
+          <Key>
+            <PropertyRef Name="IdM" />
+          </Key>
+          <Property Name="IdM" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPrev" Type="int" Nullable="false" />
+          <Property Name="IdD" Type="int" Nullable="false" />
+          <Property Name="Valor" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MontoEspecialidad">
+          <Key>
+            <PropertyRef Name="IdMe" />
+          </Key>
+          <Property Name="IdMe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPrev" Type="int" Nullable="false" />
+          <Property Name="IdE" Type="int" Nullable="false" />
+          <Property Name="Monto" Type="int" />
+          <Property Name="Abono" Type="int" Nullable="false" />
+          <Property Name="ValorBono" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Paciente">
+          <Key>
+            <PropertyRef Name="IdP" />
+          </Key>
+          <Property Name="IdP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPrev" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="ApellidoPaterno" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="ApellidoMaterno" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Rut" Type="int" Nullable="false" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="date" />
+        </EntityType>
+        <EntityType Name="Prevision">
+          <Key>
+            <PropertyRef Name="IdPrev" />
+          </Key>
+          <Property Name="IdPrev" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo" Type="smallint" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Clase" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reserva">
+          <Key>
+            <PropertyRef Name="IdR" />
+          </Key>
+          <Property Name="IdR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdU" Type="int" Nullable="false" />
+          <Property Name="IdP" Type="int" Nullable="false" />
+          <Property Name="IdA" Type="int" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdU" />
+          </Key>
+          <Property Name="IdU" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Rut" Type="int" Nullable="false" />
+          <Property Name="Nombres" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="ApellidoPaterno" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="ApellidoMaterno" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="40" />
+          <Property Name="Clave" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Agenda__IdD__7B5B524B">
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="1" />
+          <End Role="Agenda" Type="Self.Agenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="IdD" />
+            </Principal>
+            <Dependent Role="Agenda">
+              <PropertyRef Name="IdD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Doctor__IdE__74AE54BC">
+          <End Role="Especialidad" Type="Self.Especialidad" Multiplicity="1" />
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especialidad">
+              <PropertyRef Name="IdE" />
+            </Principal>
+            <Dependent Role="Doctor">
+              <PropertyRef Name="IdE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Monto__IdD__787EE5A0">
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="1" />
+          <End Role="Monto" Type="Self.Monto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="IdD" />
+            </Principal>
+            <Dependent Role="Monto">
+              <PropertyRef Name="IdD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Monto__IdPrev__778AC167">
+          <End Role="Prevision" Type="Self.Prevision" Multiplicity="1" />
+          <End Role="Monto" Type="Self.Monto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prevision">
+              <PropertyRef Name="IdPrev" />
+            </Principal>
+            <Dependent Role="Monto">
+              <PropertyRef Name="IdPrev" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MontoEspe__IdPre__02FC7413">
+          <End Role="Prevision" Type="Self.Prevision" Multiplicity="1" />
+          <End Role="MontoEspecialidad" Type="Self.MontoEspecialidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prevision">
+              <PropertyRef Name="IdPrev" />
+            </Principal>
+            <Dependent Role="MontoEspecialidad">
+              <PropertyRef Name="IdPrev" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MontoEspeci__IdE__03F0984C">
+          <End Role="Especialidad" Type="Self.Especialidad" Multiplicity="1" />
+          <End Role="MontoEspecialidad" Type="Self.MontoEspecialidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especialidad">
+              <PropertyRef Name="IdE" />
+            </Principal>
+            <Dependent Role="MontoEspecialidad">
+              <PropertyRef Name="IdE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Paciente__IdPrev__6E01572D">
+          <End Role="Prevision" Type="Self.Prevision" Multiplicity="1" />
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prevision">
+              <PropertyRef Name="IdPrev" />
+            </Principal>
+            <Dependent Role="Paciente">
+              <PropertyRef Name="IdPrev" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reserva__IdA__00200768">
+          <End Role="Agenda" Type="Self.Agenda" Multiplicity="0..1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agenda">
+              <PropertyRef Name="IdA" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="IdA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reserva__IdP__7F2BE32F">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdP" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="IdP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reserva__IdU__7E37BEF6">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdU" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="IdU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HorasMedicasOnlineModelStoreContainer">
+          <EntitySet Name="Agenda" EntityType="Self.Agenda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doctor" EntityType="Self.Doctor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Especialidad" EntityType="Self.Especialidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Monto" EntityType="Self.Monto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MontoEspecialidad" EntityType="Self.MontoEspecialidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paciente" EntityType="Self.Paciente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prevision" EntityType="Self.Prevision" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reserva" EntityType="Self.Reserva" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Agenda__IdD__7B5B524B" Association="Self.FK__Agenda__IdD__7B5B524B">
+            <End Role="Doctor" EntitySet="Doctor" />
+            <End Role="Agenda" EntitySet="Agenda" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Doctor__IdE__74AE54BC" Association="Self.FK__Doctor__IdE__74AE54BC">
+            <End Role="Especialidad" EntitySet="Especialidad" />
+            <End Role="Doctor" EntitySet="Doctor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Monto__IdD__787EE5A0" Association="Self.FK__Monto__IdD__787EE5A0">
+            <End Role="Doctor" EntitySet="Doctor" />
+            <End Role="Monto" EntitySet="Monto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Monto__IdPrev__778AC167" Association="Self.FK__Monto__IdPrev__778AC167">
+            <End Role="Prevision" EntitySet="Prevision" />
+            <End Role="Monto" EntitySet="Monto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MontoEspe__IdPre__02FC7413" Association="Self.FK__MontoEspe__IdPre__02FC7413">
+            <End Role="Prevision" EntitySet="Prevision" />
+            <End Role="MontoEspecialidad" EntitySet="MontoEspecialidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MontoEspeci__IdE__03F0984C" Association="Self.FK__MontoEspeci__IdE__03F0984C">
+            <End Role="Especialidad" EntitySet="Especialidad" />
+            <End Role="MontoEspecialidad" EntitySet="MontoEspecialidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Paciente__IdPrev__6E01572D" Association="Self.FK__Paciente__IdPrev__6E01572D">
+            <End Role="Prevision" EntitySet="Prevision" />
+            <End Role="Paciente" EntitySet="Paciente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reserva__IdA__00200768" Association="Self.FK__Reserva__IdA__00200768">
+            <End Role="Agenda" EntitySet="Agenda" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reserva__IdP__7F2BE32F" Association="Self.FK__Reserva__IdP__7F2BE32F">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reserva__IdU__7E37BEF6" Association="Self.FK__Reserva__IdU__7E37BEF6">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HorasMedicasOnlineModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Agenda">
+          <Key>
+            <PropertyRef Name="IdA" />
+          </Key>
+          <Property Name="IdA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdD" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+          <Property Name="HoraInicio" Type="Time" Precision="7" />
+          <Property Name="HoraTermino" Type="Time" Precision="7" />
+          <Property Name="Estado" Type="Boolean" />
+          <NavigationProperty Name="Doctor" Relationship="Self.FK__Agenda__IdD__7B5B524B" FromRole="Agenda" ToRole="Doctor" />
+          <NavigationProperty Name="Reserva" Relationship="Self.FK__Reserva__IdA__00200768" FromRole="Agenda" ToRole="Reserva" />
+        </EntityType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="IdD" />
+          </Key>
+          <Property Name="IdD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdE" Type="Int32" Nullable="false" />
+          <Property Name="Codigo" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ApellidoPaterno" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ApellidoMaterno" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rut" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Agenda" Relationship="Self.FK__Agenda__IdD__7B5B524B" FromRole="Doctor" ToRole="Agenda" />
+          <NavigationProperty Name="Especialidad" Relationship="Self.FK__Doctor__IdE__74AE54BC" FromRole="Doctor" ToRole="Especialidad" />
+          <NavigationProperty Name="Monto" Relationship="Self.FK__Monto__IdD__787EE5A0" FromRole="Doctor" ToRole="Monto" />
+        </EntityType>
+        <EntityType Name="Especialidad">
+          <Key>
+            <PropertyRef Name="IdE" />
+          </Key>
+          <Property Name="IdE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Doctor" Relationship="Self.FK__Doctor__IdE__74AE54BC" FromRole="Especialidad" ToRole="Doctor" />
+          <NavigationProperty Name="MontoEspecialidad" Relationship="Self.FK__MontoEspeci__IdE__03F0984C" FromRole="Especialidad" ToRole="MontoEspecialidad" />
+        </EntityType>
+        <EntityType Name="Monto">
+          <Key>
+            <PropertyRef Name="IdM" />
+          </Key>
+          <Property Name="IdM" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPrev" Type="Int32" Nullable="false" />
+          <Property Name="IdD" Type="Int32" Nullable="false" />
+          <Property Name="Valor" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Doctor" Relationship="Self.FK__Monto__IdD__787EE5A0" FromRole="Monto" ToRole="Doctor" />
+          <NavigationProperty Name="Prevision" Relationship="Self.FK__Monto__IdPrev__778AC167" FromRole="Monto" ToRole="Prevision" />
+        </EntityType>
+        <EntityType Name="MontoEspecialidad">
+          <Key>
+            <PropertyRef Name="IdMe" />
+          </Key>
+          <Property Name="IdMe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPrev" Type="Int32" Nullable="false" />
+          <Property Name="IdE" Type="Int32" Nullable="false" />
+          <Property Name="Monto" Type="Int32" />
+          <Property Name="Abono" Type="Int32" Nullable="false" />
+          <Property Name="ValorBono" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Especialidad" Relationship="Self.FK__MontoEspeci__IdE__03F0984C" FromRole="MontoEspecialidad" ToRole="Especialidad" />
+          <NavigationProperty Name="Prevision" Relationship="Self.FK__MontoEspe__IdPre__02FC7413" FromRole="MontoEspecialidad" ToRole="Prevision" />
+        </EntityType>
+        <EntityType Name="Paciente">
+          <Key>
+            <PropertyRef Name="IdP" />
+          </Key>
+          <Property Name="IdP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPrev" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ApellidoPaterno" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ApellidoMaterno" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rut" Type="Int32" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Prevision" Relationship="Self.FK__Paciente__IdPrev__6E01572D" FromRole="Paciente" ToRole="Prevision" />
+          <NavigationProperty Name="Reserva" Relationship="Self.FK__Reserva__IdP__7F2BE32F" FromRole="Paciente" ToRole="Reserva" />
+        </EntityType>
+        <EntityType Name="Prevision">
+          <Key>
+            <PropertyRef Name="IdPrev" />
+          </Key>
+          <Property Name="IdPrev" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="Int16" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Clase" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Monto" Relationship="Self.FK__Monto__IdPrev__778AC167" FromRole="Prevision" ToRole="Monto" />
+          <NavigationProperty Name="MontoEspecialidad" Relationship="Self.FK__MontoEspe__IdPre__02FC7413" FromRole="Prevision" ToRole="MontoEspecialidad" />
+          <NavigationProperty Name="Paciente" Relationship="Self.FK__Paciente__IdPrev__6E01572D" FromRole="Prevision" ToRole="Paciente" />
+        </EntityType>
+        <EntityType Name="Reserva">
+          <Key>
+            <PropertyRef Name="IdR" />
+          </Key>
+          <Property Name="IdR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdU" Type="Int32" Nullable="false" />
+          <Property Name="IdP" Type="Int32" Nullable="false" />
+          <Property Name="IdA" Type="Int32" />
+          <NavigationProperty Name="Agenda" Relationship="Self.FK__Reserva__IdA__00200768" FromRole="Reserva" ToRole="Agenda" />
+          <NavigationProperty Name="Paciente" Relationship="Self.FK__Reserva__IdP__7F2BE32F" FromRole="Reserva" ToRole="Paciente" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__Reserva__IdU__7E37BEF6" FromRole="Reserva" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdU" />
+          </Key>
+          <Property Name="IdU" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rut" Type="Int32" Nullable="false" />
+          <Property Name="Nombres" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ApellidoPaterno" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ApellidoMaterno" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Clave" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Reserva" Relationship="Self.FK__Reserva__IdU__7E37BEF6" FromRole="Usuario" ToRole="Reserva" />
+        </EntityType>
+        <Association Name="FK__Agenda__IdD__7B5B524B">
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="1" />
+          <End Role="Agenda" Type="Self.Agenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="IdD" />
+            </Principal>
+            <Dependent Role="Agenda">
+              <PropertyRef Name="IdD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reserva__IdA__00200768">
+          <End Role="Agenda" Type="Self.Agenda" Multiplicity="0..1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agenda">
+              <PropertyRef Name="IdA" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="IdA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Doctor__IdE__74AE54BC">
+          <End Role="Especialidad" Type="Self.Especialidad" Multiplicity="1" />
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especialidad">
+              <PropertyRef Name="IdE" />
+            </Principal>
+            <Dependent Role="Doctor">
+              <PropertyRef Name="IdE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Monto__IdD__787EE5A0">
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="1" />
+          <End Role="Monto" Type="Self.Monto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="IdD" />
+            </Principal>
+            <Dependent Role="Monto">
+              <PropertyRef Name="IdD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MontoEspeci__IdE__03F0984C">
+          <End Role="Especialidad" Type="Self.Especialidad" Multiplicity="1" />
+          <End Role="MontoEspecialidad" Type="Self.MontoEspecialidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especialidad">
+              <PropertyRef Name="IdE" />
+            </Principal>
+            <Dependent Role="MontoEspecialidad">
+              <PropertyRef Name="IdE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Monto__IdPrev__778AC167">
+          <End Role="Prevision" Type="Self.Prevision" Multiplicity="1" />
+          <End Role="Monto" Type="Self.Monto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prevision">
+              <PropertyRef Name="IdPrev" />
+            </Principal>
+            <Dependent Role="Monto">
+              <PropertyRef Name="IdPrev" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MontoEspe__IdPre__02FC7413">
+          <End Role="Prevision" Type="Self.Prevision" Multiplicity="1" />
+          <End Role="MontoEspecialidad" Type="Self.MontoEspecialidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prevision">
+              <PropertyRef Name="IdPrev" />
+            </Principal>
+            <Dependent Role="MontoEspecialidad">
+              <PropertyRef Name="IdPrev" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Paciente__IdPrev__6E01572D">
+          <End Role="Prevision" Type="Self.Prevision" Multiplicity="1" />
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prevision">
+              <PropertyRef Name="IdPrev" />
+            </Principal>
+            <Dependent Role="Paciente">
+              <PropertyRef Name="IdPrev" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reserva__IdP__7F2BE32F">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="IdP" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="IdP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reserva__IdU__7E37BEF6">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdU" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="IdU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HorasMedicasOnlineEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Agenda" EntityType="Self.Agenda" />
+          <EntitySet Name="Doctor" EntityType="Self.Doctor" />
+          <EntitySet Name="Especialidad" EntityType="Self.Especialidad" />
+          <EntitySet Name="Monto" EntityType="Self.Monto" />
+          <EntitySet Name="MontoEspecialidad" EntityType="Self.MontoEspecialidad" />
+          <EntitySet Name="Paciente" EntityType="Self.Paciente" />
+          <EntitySet Name="Prevision" EntityType="Self.Prevision" />
+          <EntitySet Name="Reserva" EntityType="Self.Reserva" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK__Agenda__IdD__7B5B524B" Association="Self.FK__Agenda__IdD__7B5B524B">
+            <End Role="Doctor" EntitySet="Doctor" />
+            <End Role="Agenda" EntitySet="Agenda" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reserva__IdA__00200768" Association="Self.FK__Reserva__IdA__00200768">
+            <End Role="Agenda" EntitySet="Agenda" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Doctor__IdE__74AE54BC" Association="Self.FK__Doctor__IdE__74AE54BC">
+            <End Role="Especialidad" EntitySet="Especialidad" />
+            <End Role="Doctor" EntitySet="Doctor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Monto__IdD__787EE5A0" Association="Self.FK__Monto__IdD__787EE5A0">
+            <End Role="Doctor" EntitySet="Doctor" />
+            <End Role="Monto" EntitySet="Monto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MontoEspeci__IdE__03F0984C" Association="Self.FK__MontoEspeci__IdE__03F0984C">
+            <End Role="Especialidad" EntitySet="Especialidad" />
+            <End Role="MontoEspecialidad" EntitySet="MontoEspecialidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Monto__IdPrev__778AC167" Association="Self.FK__Monto__IdPrev__778AC167">
+            <End Role="Prevision" EntitySet="Prevision" />
+            <End Role="Monto" EntitySet="Monto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MontoEspe__IdPre__02FC7413" Association="Self.FK__MontoEspe__IdPre__02FC7413">
+            <End Role="Prevision" EntitySet="Prevision" />
+            <End Role="MontoEspecialidad" EntitySet="MontoEspecialidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Paciente__IdPrev__6E01572D" Association="Self.FK__Paciente__IdPrev__6E01572D">
+            <End Role="Prevision" EntitySet="Prevision" />
+            <End Role="Paciente" EntitySet="Paciente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reserva__IdP__7F2BE32F" Association="Self.FK__Reserva__IdP__7F2BE32F">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reserva__IdU__7E37BEF6" Association="Self.FK__Reserva__IdU__7E37BEF6">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HorasMedicasOnlineModelStoreContainer" CdmEntityContainer="HorasMedicasOnlineEntities1">
+          <EntitySetMapping Name="Agenda">
+            <EntityTypeMapping TypeName="HorasMedicasOnlineModel.Agenda">
+              <MappingFragment StoreEntitySet="Agenda">
+                <ScalarProperty Name="IdA" ColumnName="IdA" />
+                <ScalarProperty Name="IdD" ColumnName="IdD" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="HoraInicio" ColumnName="HoraInicio" />
+                <ScalarProperty Name="HoraTermino" ColumnName="HoraTermino" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doctor">
+            <EntityTypeMapping TypeName="HorasMedicasOnlineModel.Doctor">
+              <MappingFragment StoreEntitySet="Doctor">
+                <ScalarProperty Name="IdD" ColumnName="IdD" />
+                <ScalarProperty Name="IdE" ColumnName="IdE" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+                <ScalarProperty Name="Rut" ColumnName="Rut" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Especialidad">
+            <EntityTypeMapping TypeName="HorasMedicasOnlineModel.Especialidad">
+              <MappingFragment StoreEntitySet="Especialidad">
+                <ScalarProperty Name="IdE" ColumnName="IdE" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Monto">
+            <EntityTypeMapping TypeName="HorasMedicasOnlineModel.Monto">
+              <MappingFragment StoreEntitySet="Monto">
+                <ScalarProperty Name="IdM" ColumnName="IdM" />
+                <ScalarProperty Name="IdPrev" ColumnName="IdPrev" />
+                <ScalarProperty Name="IdD" ColumnName="IdD" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MontoEspecialidad">
+            <EntityTypeMapping TypeName="HorasMedicasOnlineModel.MontoEspecialidad">
+              <MappingFragment StoreEntitySet="MontoEspecialidad">
+                <ScalarProperty Name="IdMe" ColumnName="IdMe" />
+                <ScalarProperty Name="IdPrev" ColumnName="IdPrev" />
+                <ScalarProperty Name="IdE" ColumnName="IdE" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="Abono" ColumnName="Abono" />
+                <ScalarProperty Name="ValorBono" ColumnName="ValorBono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paciente">
+            <EntityTypeMapping TypeName="HorasMedicasOnlineModel.Paciente">
+              <MappingFragment StoreEntitySet="Paciente">
+                <ScalarProperty Name="IdP" ColumnName="IdP" />
+                <ScalarProperty Name="IdPrev" ColumnName="IdPrev" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+                <ScalarProperty Name="Rut" ColumnName="Rut" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prevision">
+            <EntityTypeMapping TypeName="HorasMedicasOnlineModel.Prevision">
+              <MappingFragment StoreEntitySet="Prevision">
+                <ScalarProperty Name="IdPrev" ColumnName="IdPrev" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Clase" ColumnName="Clase" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reserva">
+            <EntityTypeMapping TypeName="HorasMedicasOnlineModel.Reserva">
+              <MappingFragment StoreEntitySet="Reserva">
+                <ScalarProperty Name="IdR" ColumnName="IdR" />
+                <ScalarProperty Name="IdU" ColumnName="IdU" />
+                <ScalarProperty Name="IdP" ColumnName="IdP" />
+                <ScalarProperty Name="IdA" ColumnName="IdA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="HorasMedicasOnlineModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="IdU" ColumnName="IdU" />
+                <ScalarProperty Name="Rut" ColumnName="Rut" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

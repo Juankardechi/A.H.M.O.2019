@@ -1,0 +1,103 @@
+﻿body {
+    height: 40%;
+    width: 30%;
+    margin: 50px;
+    padding: 10px;
+    background-image: url(/Imagenes/Fondodoc.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 100px;
+    
+}
+
+.formularioCentradoLogin {
+    height: 40%;
+    width: 100%;
+    margin-left: 80%;
+    margin-top: 05px;
+    background-color: rgba(46, 139, 87,0.5);
+    border-radius: 15px;
+    padding: 15px;
+    border-style: ridge;
+    border-color: chartreuse;
+   
+   
+}
+
+    .formularioCentradoLogin h1 {
+        margin: 10px;
+        margin-bottom: 17px;
+        font-weight: bold;
+        border-radius: 100px;
+        background-color: rgba(88, 245, 35, 0.50);
+        text-align:center;
+             
+    }
+
+
+
+.btnLogin {
+    height: 50px;
+    width: 310px;
+    float: none;
+    margin: auto;
+    color: midnightblue;
+    background-color: rgba(154, 205, 50,0.5);
+    border-radius: 100px;
+    text-align-last: center;
+    
+}
+
+div.form-group {
+    color: black;
+    text-align-last: center;
+    padding: 05px;
+    background-color: rgba(32, 173, 245, 0.0);
+}
+
+
+
+
+.control-label {
+    border-radius: 50px;
+    background-color: rgba(0, 0, 129,0.2);
+    border-radius: 50px;
+    
+}
+
+.form-control {
+    border-radius: 50px;
+    background-color: rgba(0, 0, 128,0.2);
+    border-radius: 50px;
+    border-color: white;
+    color: white;
+}
+
+.lead1 {
+    font-size: 20px;
+    color: white;
+    font-style: oblique;
+    text-align-last: center;
+
+      
+}
+
+.lead2 {
+    font-size: 20px;
+    color: yellow;
+    font-style: oblique;
+    text-align-last: left;
+    text-align-last: center;
+}
+
+
+
+.texto {
+    font-size: 20px;
+    color: midnightblue;
+    font-style: oblique;
+    text-align-last: left;
+    border-color: white;
+}
+

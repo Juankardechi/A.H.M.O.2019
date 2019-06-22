@@ -1,0 +1,70 @@
+﻿body {
+    height: 40%;
+    width: 30%;
+    margin: 10px;
+    padding: 30px;    
+    background-position: center;
+    background-repeat: no-repeat;   
+    border-radius: 100px;
+}
+
+
+div.container.formularioCentradoRegistro {
+    width: 110%;
+    margin: auto;
+    margin-left: 600px;
+    margin-top: 0px;
+    background-color: rgba(46, 139, 87,0.5);
+    border-radius: 15px;
+    padding: 20px;
+    border-style: ridge;
+    border-color: chartreuse;
+    height: unset;
+}
+
+.formularioCentradoRegistro h2 {
+   
+    margin: 10px;
+    margin-bottom: 17px;
+    font-weight: bold;
+    border-radius: 100px;
+    background-color: rgba(88, 245, 35, 0.50);
+    text-align: center;
+}
+
+div.form-group {
+    color: black;
+    text-align-last: center;
+    padding: 05px;
+    background-color: rgba(32, 173, 245, 0.0);
+}
+
+
+.form-control {
+    width: 300px;
+    background-color: rgba(0, 0, 128,0.10);
+    border-radius: 50px;
+    border-color: white;
+    color: black;
+}
+
+.control-label {
+    border-radius: 50px;
+    background-color: rgba(0, 0, 129,0.1);
+    border-radius: 50px;
+}
+
+.btnNuevoRegistro {
+    height: 50px;
+    width: 150px;
+    float: initial;
+    margin:auto;
+    color: dodgerblue;
+    background-color: rgba(18, 100, 27, 0.50);
+    border-radius: 100px;
+    text-align-last:center;
+}
+
+
+
+

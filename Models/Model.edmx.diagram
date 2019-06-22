@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1f6e1d8fc03a4e7a824423d596632a72" Name="Diagram1">
+        <EntityTypeShape EntityType="HorasMedicasOnlineModel.Agenda" Width="1.5" PointX="3" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HorasMedicasOnlineModel.Doctor" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HorasMedicasOnlineModel.Especialidad" Width="1.5" PointX="1.5" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HorasMedicasOnlineModel.Monto" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HorasMedicasOnlineModel.MontoEspecialidad" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HorasMedicasOnlineModel.Paciente" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HorasMedicasOnlineModel.Prevision" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HorasMedicasOnlineModel.Reserva" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HorasMedicasOnlineModel.Usuario" Width="1.5" PointX="3" PointY="18.875" IsExpanded="true" />
+        <AssociationConnector Association="HorasMedicasOnlineModel.FK__Agenda__IdD__7B5B524B" ManuallyRouted="false" />
+        <AssociationConnector Association="HorasMedicasOnlineModel.FK__Reserva__IdA__00200768" ManuallyRouted="false" />
+        <AssociationConnector Association="HorasMedicasOnlineModel.FK__Doctor__IdE__74AE54BC" ManuallyRouted="false" />
+        <AssociationConnector Association="HorasMedicasOnlineModel.FK__Monto__IdD__787EE5A0" ManuallyRouted="false" />
+        <AssociationConnector Association="HorasMedicasOnlineModel.FK__MontoEspeci__IdE__03F0984C" ManuallyRouted="false" />
+        <AssociationConnector Association="HorasMedicasOnlineModel.FK__Monto__IdPrev__778AC167" ManuallyRouted="false" />
+        <AssociationConnector Association="HorasMedicasOnlineModel.FK__MontoEspe__IdPre__02FC7413" ManuallyRouted="false" />
+        <AssociationConnector Association="HorasMedicasOnlineModel.FK__Paciente__IdPrev__6E01572D" ManuallyRouted="false" />
+        <AssociationConnector Association="HorasMedicasOnlineModel.FK__Reserva__IdP__7F2BE32F" ManuallyRouted="false" />
+        <AssociationConnector Association="HorasMedicasOnlineModel.FK__Reserva__IdU__7E37BEF6" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

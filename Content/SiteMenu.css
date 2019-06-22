@@ -1,0 +1,147 @@
+﻿body {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(/Imagenes/Fondodoc.png);
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+.content {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+}
+.contentColor {
+    color: aliceblue;
+    background-color: darkgray;
+    width: 35%;
+    height: 100%; 
+    background-color: rgba(46, 139, 87,0.5);
+    border-radius: 15px;
+    padding: 10px;
+    border-style: ridge;
+    border-color: chartreuse;
+    text-align: center;
+    margin-left:100px;
+}
+
+
+    .mainContent {
+    height:100%;
+    width:75%; 
+    justify-content:center;
+}
+
+.contentColor {
+    text-align-last: center;
+}
+        .formularioCentradox {
+            margin-left:100px;
+            width: 10%;   
+            min-width:845px;
+            background-color: rgba(46, 139, 87,0.5);
+            border-radius: 15px;
+            padding: 20px;
+            border-style: ridge;
+            border-color: chartreuse;
+            height:unset;
+
+        }
+
+
+
+    .formularioCentradox h1 {
+       
+        border-bottom-color: brown; 
+        margin-bottom: 17px;
+        font-weight: bold;
+        border-radius: 50px;
+        background-color: rgba(236, 245, 32, 0.50);
+        text-align-last: center;
+
+
+        
+    }
+
+
+
+a.menu9_selected {
+   stop-color:red;
+    font-style: normal;
+    font-size:inherit;
+    font-display:block;
+    
+}
+
+ul#menu9 {
+    color: black;
+    border-radius: 10px;    
+    width: 90%;    
+    text-align-last:center;
+    background-color: rgba(151, 216, 56, 0.50); 
+    padding: 10px;   
+    border-color: chartreuse;
+    
+}
+a{
+   
+   text-decoration:none;
+   color:black;
+   font-weight:bold;
+   font-family:"Open Sans";
+ }
+#calendar {
+    width: 840px !important;
+    height: 680px !important;
+    margin-left: 100px;
+}
+div#calendar.fc.fc-unthemed.fc-ltr {
+    padding: 30px;
+
+    background-color: rgba(78, 197, 235, 0.73);
+    
+    border-style: ridge;
+    border-color: chartreuse;
+    margin-top: 10px; 
+    border-radius: 50px; 
+}
+
+
+.accordion {
+    color: black;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: solid;
+    outline: auto;
+    font-size: 15px;
+    transition: 0.4s;
+    border-radius: 15px;
+    text-align-last: center;
+    background-color: rgba(151, 216, 56, 0.50);
+    border-color: chartreuse;
+    margin-bottom: 03px;
+}
+
+.active, .accordion:hover {
+    background-color: darkcyan;
+}
+
+.panel {
+    padding: 0 18px;
+    display: none;
+    background-color: rgba(155, 216, 56, 0.40);
+    overflow: hidden;
+    text-align: justify;
+    border-radius: 15px;
+}
+
+p {
+    color: floralwhite;
+    text-align-last: center;
+}
+
+
+
+
+
