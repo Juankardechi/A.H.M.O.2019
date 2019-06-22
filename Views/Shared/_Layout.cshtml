@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        @Styles.Render("~/Content/css")
+    }
+    else
+    {
+        @Styles.Render("~/Content/fullScreen")
+
+    }
+
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/fullcalendar")
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/bootstrap")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/fullcalendar")
+    @Styles.Render("~/Content/menu")
+    @Styles.Render("~/Content/createRegistroUsuario")
+
+</head>
+<body>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Nombre de aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container body-content">
+            @RenderBody()
+           <br />
+            <hr />
+            <footer style="text-align-last: center; min-width: 1150px;">
+                <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            </footer>
+        </div>
+    }
+    else
+    {
+        @RenderBody()
+        <br />
+        <footer style="text-align-last: center; min-width: 1210px;">
+            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            
+        </footer>
+    }
+
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

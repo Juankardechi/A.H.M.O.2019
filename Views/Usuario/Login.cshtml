@@ -1,0 +1,74 @@
+﻿@model A.H.M.O._2018.Models.Usuario
+
+
+@using (Html.BeginForm("Login", "Usuario", FormMethod.Post))
+{
+
+    @Html.AntiForgeryToken()
+
+<div class="container formularioCentradoLogin">
+
+    <h1>Agenda Horas Médicas Online</h1>
+
+    <p class="lead1">Registra tu hora de forma rapida y segura.</p>
+
+
+
+    <div class="form-horizontal">
+
+
+        <p class="lead2">Datos de acceso:</p>
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Rut, htmlAttributes: new { @class = "control-label texto col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Rut, new { htmlAttributes = new { @class = "form-control", @placeholder = "Digita tu Rut Aqui" } })
+                @Html.ValidationMessageFor(model => model.Rut, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <br />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Clave, htmlAttributes: new { @class = "control-label texto col-md-2" })
+            <div class="col-md-10">
+                @Html.PasswordFor(model => model.Clave, new { @class = "form-control ", @placeholder = "Digita tu Clave Aqui" })
+                @Html.ValidationMessageFor(model => model.Clave, "", new { @class = "text-danger " })
+            </div>
+        </div>
+        <br />
+
+        <div class="form-group boton1">
+            <input type="submit" value="Ingresar" class="btn-warning btnLogin " />
+            
+            <hr />
+            <p style=" color: black;font-size: 18pt">
+                Si no estas registrado, has Click
+
+                <a href="@Url.Action("Create","Usuario")" style="color: blue; font-size: 21pt;">AQUI</a>
+
+            </p>
+            <hr /><br />
+        </div>
+        
+    </div>
+
+   
+</div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+
+
+

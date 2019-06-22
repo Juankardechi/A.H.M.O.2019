@@ -1,0 +1,332 @@
+﻿
+@model A.H.M.O._2018.Models.Usuario
+
+@Html.AntiForgeryToken()
+
+@*COMENTARIO:
+    El siguiente STYLE corresponde al diseño
+    del menu, QUIENES SOMOS, NUESTRA UBICACION,
+    HORARIO DE ATENCION Y LO NUEVO y son
+    de tipo Button.-*@
+
+
+<style>
+    .accordion {
+        color: black;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: solid;
+        outline: auto;
+        font-size: 15px;
+        transition: 0.4s;
+        border-radius: 15px;
+        text-align-last: center;
+        background-color: rgba(151, 216, 56, 0.50);
+        border-color: chartreuse;
+        margin-bottom: 03px;
+    }
+
+        .active, .accordion:hover {
+            background-color: darkcyan;
+        }
+
+    .panel {
+        padding: 0 18px;
+        display: none;
+        background-color: rgba(155, 216, 56, 0.40);
+        overflow: hidden;
+        text-align: justify;
+        border-radius: 15px;
+    }
+
+    p {
+        color: floralwhite;
+        text-align-last: center;
+    }
+</style>
+
+<div class="content">
+
+    <div class="contentColor">
+
+        <h2 style="color: blue">INFORMACION BASICA </h2>
+
+        <button class="accordion" id="qs">QUIENES SOMOS</button>
+        <div class="panel">
+
+            <p style=" text-align-last: center; color: navy; font-size: 14pt">Somos una empresa que presta servicios profesionales Médicos Garantizados, en el ambito de la salud.</p>
+        </div>
+
+        <br /><br />
+
+
+        <button class="accordion" id="nu">NUESTRA UBICACION</button>
+        <div class="panel">
+
+            <p style=" text-align-last: center; color: navy; font-size: 14pt">Nuestra centro de atencion está ubicado en Calle Las Palmas Nro.1994 de la Comuna de Osorno X Región de Los Lagos.</p>
+        </div>
+
+        <br /><br />
+
+        <button class="accordion" id="ha">HORARIO DE ATENCION</button>
+        <div class="panel">
+
+            <p style=" text-align-last: center; color: black;"> LUNES A VIERNES </p>
+            <p style=" text-align-last: left; color: navy;">MAÑANA: 09:00 a 13:00 Horas</p>
+            <p style=" text-align-last: left; color: navy;">TARDE : 14:30 a 18:00 Horas</p>
+
+            <p style=" text-align-last: center; color: black;"> SABADO </p>
+            <p style=" text-align-last: left; color: navy;">MAÑANA: 09:00 a 12:30 Horas</p>
+
+
+        </div>
+
+        <br /><br />
+
+        <button class="accordion" id="ln">TIPO DE ATENCION</button>
+        <div class="panel">
+
+            <p style=" text-align-last: center; color: navy; font-size: 14pt">El tipo de atención es personalizada y profesional, ademas se respetan los horarios agendados por el paciente</p>
+
+        </div>
+
+
+        <h3 style="color: blue">CONSULTAS:</h3>
+
+
+        <p style="color: black; font-size: 12pt;">Para una mayor informacion puedes comunicarte con nosotros de la siguiente manera:</p>
+        <p style="color: black; font-size: 13pt; text-align-last: left;">1.-Vía telefónica : <strong>569-12345678</strong></p>
+        <p style="color: black; font-size: 13pt; text-align-last: left;">2.-Email : <strong>consultaahmo@gmail.com </strong></p>
+
+
+        @*COMENTARIO:
+            El siguiente SCRIPT corresponde a la funcion
+            de cada boton del menu, QUIENES SOMOS, NUESTRA UBICACION,
+            HORARIO DE ATENCION Y LO NUEVO y son
+            de tipo Button.-*@
+
+        <script>
+            var acc = document.getElementsByClassName("accordion");
+            var i;
+
+            for (i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function () {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.display === "block") {
+                        panel.style.display = "none";
+                    } else {
+                        panel.style.display = "block";
+                    }
+                });
+            }
+        </script>
+
+
+
+    </div>
+
+
+
+    <div class="mainContent">
+        <div class="formularioCentradox">
+            <h1>Selecciona los Datos Solicitados</h1>
+        </div>
+
+        <br />
+
+        <div>
+
+            @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+            {
+                       <div class="contentLista" style=" margin-left: 100px;
+                         width: 50%; min-width: 845px; background-color: rgba(46, 139, 87,0.5);
+                         border-radius: 15px; padding: 20px; border-style: ridge;
+                         border-color: chartreuse; height: unset; text-align-last: center;">
+
+
+                                    <table style="  min-width: 900px; ">
+                                        @*
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="  font-size: 15pt;"><hr />Selecciona un Especialidad</th>
+
+                                                            <th style="  font-size: 15pt;"><hr />Selecciona una Doctor </th>
+                                                        </tr>
+                                                    </thead>
+                                        *@
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>
+                                    
+                                                                            @Html.DropDownList("Especialidad", new SelectList(ViewBag.listaEspecialidad, "IdE", "Nombre"), " [ Seleccione una Especialdiad ] ", new { @class = "form-control", onchange = "document.forms[0].submit()" })
+                                                                        </td>
+                                                                        <td>
+                                    
+                                                                            @Html.DropDownList("Doctor", new SelectList(ViewBag.listaDoctor, "IdD", "NombreCompleto"), " [ Seleccione un Médico ] ", new { @class = "form-control", onchange = "buscarHorarioDoctor()", id = "doctor" })
+
+                                                                        </td>
+
+                                                                    </tr>
+                                                                </tbody>
+                                    </table>
+                        </div>
+                    }
+                </div>
+
+
+             
+
+                <div id="calendar">
+
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="fechaReserva" tabindex="-1" role="dialog" aria-labelledby="fechaReservaLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="titulo"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label class="text-left">Fecha Inicio</label>
+                                <input type="text" id="fechaInicio" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="text-left">Fecha Termino</label>
+                                <input type="text" id="fechaTermino" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="text-left">Nombre Doctor</label>
+                                <input type="text" id="nombreDoctor" class="form-control" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+                        <button type="button" class="btn btn-primary">Crear Reserva</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+
+            function buscarHorarioDoctor() {
+                var doctor = document.getElementById("doctor").value;
+
+                $('#calendar').fullCalendar({
+                    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                    dayNames: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'],
+
+
+                    locale: 'es',
+
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,agendaWeek,agendaDay,listWeek'
+
+                    },
+                    eventClick: function (calEvent, jsEvent, view) {//este se ejecuta cuando hace click sobre un evento ya creado en la agenda
+
+                        var nombreDoctor = document.getElementById('doctor').options[document.getElementById('doctor').selectedIndex].text;
+
+
+                        // change the border color just for fun
+                        $(this).css('border-color', 'blue');
+
+                        $('#fechaReserva').modal('show');
+                        $('#fechaReserva').find('#titulo').val(calEvent.title);
+                        $('#fechaReserva').find('#fechaInicio').val(calEvent.start.format("DD-MM-YYYY HH:mm"));
+                        $('#fechaReserva').find('#fechaTermino').val(calEvent.end.format("DD-MM-YYYY HH:mm"));
+                        $('#fechaReserva').find('#nombreDoctor').val(nombreDoctor);
+
+                    },
+                    selectable: true,
+                    selectHelper: true,
+                    select: function (startDate, endDate) { //este se ejecuta cuando hace clcik sobre cualquier area de la agenda para reservar una hora
+                        var nombreDoctor = document.getElementById('doctor').options[document.getElementById('doctor').selectedIndex].text;
+
+
+                        $('#fechaReserva').modal('show');
+                        $('#fechaReserva').find('#titulo').html("HORA RESERVADA ");
+                        $('#fechaReserva').find('#fechaInicio').val(startDate.format("DD-MM-YYYY HH:mm"));
+                        $('#fechaReserva').find('#fechaTermino').val(endDate.format("DD-MM-YYYY HH:mm"));
+                        $('#fechaReserva').find('#nombreDoctor').val(nombreDoctor);
+                    },
+
+
+                    defaultDate: '2019-06-11',
+                    navLinks: true, // can click day/week names to navigate views
+                    editable: false,
+
+                    eventLimit: true, // allow "more" link when too many events
+                    events: function (start, end, timezone, callback) {
+                        var eventos = [];
+                        $.ajax({
+                            type: "GET",
+                            url: "/Home/GetEvents",
+                            data: "doctor=" + doctor,
+                            
+                            success: function (data) {
+                                $.each(data, function (i, valor) {
+                                    eventos.push({
+                                        title: valor.title,
+                                        start: valor.start,
+                                        end: valor.end,
+                                        //class-name: "red";
+                                    });
+                                })
+
+                                console.log(eventos);
+                                callback(eventos);
+                            }
+                        });
+
+
+                    }
+                });
+            }
+            $(document).ready(function () {
+
+                var date = new Date();
+                var d = date.getDate();
+                var m = date.getMonth();
+                var y = date.getFullYear();
+
+
+
+                $('#save-event').on('click', function () {
+                    var title = $('#title').val();
+                    if (title) {
+                        var eventData = {
+                            title: title,
+                            start: $('#starts-at').val(),
+                            end: $('#ends-at').val()
+                        };
+                        $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+                    }
+                    $('#calendar').fullCalendar('unselect');
+
+                    // Clear modal inputs
+                    $('.modal').find('input').val('');
+
+                    // hide modal
+                    $('.modal').modal('hide');
+                });
+            });
+        </script>
+
+        @section Scripts {
+
+
+            @Scripts.Render("~/bundles/jqueryval")
+        }
+
