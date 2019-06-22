@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HorasMedicasOnlineModelStoreContainer" CdmEntityContainer="HorasMedicasOnlineEntities1">
+    <EntitySetMapping Name="Agenda">
+      <EntityTypeMapping TypeName="HorasMedicasOnlineModel.Agenda">
+        <MappingFragment StoreEntitySet="Agenda">
+          <ScalarProperty Name="IdA" ColumnName="IdA" />
+          <ScalarProperty Name="IdD" ColumnName="IdD" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="HoraInicio" ColumnName="HoraInicio" />
+          <ScalarProperty Name="HoraTermino" ColumnName="HoraTermino" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Doctor">
+      <EntityTypeMapping TypeName="HorasMedicasOnlineModel.Doctor">
+        <MappingFragment StoreEntitySet="Doctor">
+          <ScalarProperty Name="IdD" ColumnName="IdD" />
+          <ScalarProperty Name="IdE" ColumnName="IdE" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+          <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+          <ScalarProperty Name="Rut" ColumnName="Rut" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Especialidad">
+      <EntityTypeMapping TypeName="HorasMedicasOnlineModel.Especialidad">
+        <MappingFragment StoreEntitySet="Especialidad">
+          <ScalarProperty Name="IdE" ColumnName="IdE" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Monto">
+      <EntityTypeMapping TypeName="HorasMedicasOnlineModel.Monto">
+        <MappingFragment StoreEntitySet="Monto">
+          <ScalarProperty Name="IdM" ColumnName="IdM" />
+          <ScalarProperty Name="IdPrev" ColumnName="IdPrev" />
+          <ScalarProperty Name="IdD" ColumnName="IdD" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MontoEspecialidad">
+      <EntityTypeMapping TypeName="HorasMedicasOnlineModel.MontoEspecialidad">
+        <MappingFragment StoreEntitySet="MontoEspecialidad">
+          <ScalarProperty Name="IdMe" ColumnName="IdMe" />
+          <ScalarProperty Name="IdPrev" ColumnName="IdPrev" />
+          <ScalarProperty Name="IdE" ColumnName="IdE" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+          <ScalarProperty Name="Abono" ColumnName="Abono" />
+          <ScalarProperty Name="ValorBono" ColumnName="ValorBono" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Paciente">
+      <EntityTypeMapping TypeName="HorasMedicasOnlineModel.Paciente">
+        <MappingFragment StoreEntitySet="Paciente">
+          <ScalarProperty Name="IdP" ColumnName="IdP" />
+          <ScalarProperty Name="IdPrev" ColumnName="IdPrev" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+          <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+          <ScalarProperty Name="Rut" ColumnName="Rut" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prevision">
+      <EntityTypeMapping TypeName="HorasMedicasOnlineModel.Prevision">
+        <MappingFragment StoreEntitySet="Prevision">
+          <ScalarProperty Name="IdPrev" ColumnName="IdPrev" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Clase" ColumnName="Clase" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reserva">
+      <EntityTypeMapping TypeName="HorasMedicasOnlineModel.Reserva">
+        <MappingFragment StoreEntitySet="Reserva">
+          <ScalarProperty Name="IdR" ColumnName="IdR" />
+          <ScalarProperty Name="IdU" ColumnName="IdU" />
+          <ScalarProperty Name="IdP" ColumnName="IdP" />
+          <ScalarProperty Name="IdA" ColumnName="IdA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="HorasMedicasOnlineModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="IdU" ColumnName="IdU" />
+          <ScalarProperty Name="Rut" ColumnName="Rut" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+          <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Clave" ColumnName="Clave" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
